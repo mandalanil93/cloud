@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Submitted Messages</title>
+</head>
+<body>
+  <h1>Submitted Messages</h1>
+  <ul id="messages"></ul>
+
+  <script>
+    async function fetchMessages() {
+      const response = await fetch("/api/messages");
+      const messages = await response.json();
+      const messagesList = document.getElementById("messages");
+      messages.forEach(msg => {
+        const li = document.createElement("li");
+        li.textContent = `${msg.name}: ${msg.message}`;
+        messagesList.appendChild(li);
+      });
+    }
+
+    fetchMessages();
+  </script>
+</body>
+</html>
